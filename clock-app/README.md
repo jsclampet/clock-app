@@ -47,9 +47,18 @@ Want some support on the challenge? [Join our Slack community](https://www.front
   - "Good morning" between 5am and 12pm
   - "Good afternoon" between 12pm and 6pm
   - "Good evening" between 6pm and 5am
+
+
+
 - Change the greeting icon and background image depending on the time of day. They should show:
+
+
+
   - The sun icon and the daytime background image between 5am and 6pm
   - The moon icon and the nighttime background image between 6pm and 5am
+
+
+  
 - Generate a new random programming quote whenever the refresh icon is clicked
 
 ## Where to find everything

@@ -66,6 +66,21 @@ var worldApi = new XMLHttpRequest();
                 greeting.textContent = "GOOD EVENING"
             }
 
+            let expandedContainer = document.querySelector('.expanded-container');
+            let icon = document.querySelector('.icon');
+            if (hourOfDay >= 5 && hourOfDay <= 18){
+                icon.src = 'assets/desktop/icon-moon.svg';
+                document.body.style.backgroundImage = 'url(/assets/mobile/bg-image-daytime.jpg)';
+                expandedContainer.style.backgroundColor = '#D2D5D8';
+                expandedContainer.style.color = '#303030';
+            } else {
+                icon.src = 'assets/desktop/icon-moon.svg';
+                document.body.style.backgroundImage = 'url(/assets/mobile/bg-image-nighttime.jpg)';
+                expandedContainer.style.backgroundColor = 'rgba(0, 0, 0)';
+                expandedContainer.style.color = 'white';
+            }
+            
+
             let timeZone = document.querySelector('.time-zone-full')
             timeZone.textContent = worldApiData.timezone
             let dayOfYear = document.querySelector('.day-of-the-year')
@@ -81,5 +96,31 @@ worldApi.open("GET", `https://worldtimeapi.org/api/ip`, true);
 worldApi.send();
 
 
-let d1 = new Date()
-console.log(d1.toString())
+
+//EXPAND BUTTON
+let isExpanded = false;
+let button = document.getElementById('pop-up-btn');
+button.addEventListener('click', () => {
+    //toggle visibility for expanded and bottom containers
+    let topContainer = document.querySelector('.top-container')
+    topContainer.classList.toggle('hidden');
+    let expandedContainer = document.querySelector('.expanded-container')
+    expandedContainer.classList.toggle('hidden');
+
+    let btnText = document.getElementById('btn-txt');
+    let btnArrow = document.getElementById('btn-arrow');
+    let bottomContainer = document.querySelector('.bottom-container');
+    if (isExpanded) {
+        isExpanded = false;
+        btnText.textContent = 'MORE';
+        btnArrow.style.transform = 'rotate(0deg)'
+        bottomContainer.style.top = '355px';
+    } else {
+        isExpanded = true;
+        btnText.textContent = 'LESS';
+        btnArrow.style.transform = 'rotate(180deg)';
+        bottomContainer.style.top = '99px';
+        expandedContainer.style.bottom = '0';
+    }   
+
+})
