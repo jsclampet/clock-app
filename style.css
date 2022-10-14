@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;300;400;500;700&display=swap');
 
+/* GLOBAL */
 * {
     padding: 0;
     margin: 0;
@@ -14,17 +15,27 @@ a {
     display: none;
 }
 body {
-    background-image: url(/assets/mobile/bg-image-daytime.jpg);
-    background-position: center;
+    color: #fff;
+}
+.nighttime-background-image {
+    background-image: url(/assets/mobile/bg-image-nighttime.jpg);
+    background-position: center bottom;
     background-repeat: no-repeat;
     background-size: cover;
-    color: #fff;
+}
+.daytime-background-image {
+    background-image: url(/assets/mobile/bg-image-daytime.jpg);
+    background-position: center bottom;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 .overlay {
     background-color: rgba(0,0,0,0.4);
     height: 100vh;
     width: 100vw;
 }
+
+/* MAIN */
 .main-container {
     padding: 32px 26px 0;
 }
@@ -90,6 +101,7 @@ body {
     background-color: white;
     justify-content: space-between;
     width: 115px;
+    margin-bottom: 15px;
 }
 #pop-up-btn p {
     margin-left: 18px;
@@ -123,10 +135,12 @@ body {
     font-size: 20px;
 }
 
-/* //Animations */
-
-/* @keyframes slide-in {
-    0%{
-        transform: translateX()
+/* TABLET */
+@media only screen and (min-width: 768px) {
+    .nighttime-background-image {
+        background-image: url("assets/tablet/bg-image-nighttime.jpg");
     }
-} */
+    .daytime-background-image {
+        background-image: url("assets/tablet/bg-image-daytime.jpg");
+    }
+}

@@ -1,3 +1,5 @@
+appFn();
+
 function quoteFn(){    
     var quoteApi = new XMLHttpRequest();
     quoteApi.onreadystatechange = function() {
@@ -24,13 +26,13 @@ refreshBtn.addEventListener('click', () => {
 })
 
 
+
 var locationApi = new XMLHttpRequest();
 locationApi.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
     // Typical action to be performed when the document is ready:
     let locationData = JSON.parse(locationApi.responseText);
-        console.log('geo', locationData)
-            
+
         let city = locationData.data.location.city.name
         let country = locationData.data.location.country.alpha2 
         document.querySelector('#location').textContent = `IN ${locationData.data.timezone.id.split('/')[1].toUpperCase()}, ${locationData.data.location.country.alpha2.toUpperCase()}`
@@ -40,13 +42,13 @@ locationApi.open("GET", "https://api.ipbase.com/v2/info?format=json");
 locationApi.setRequestHeader("apikey", "y9FpuihLeu2pDN80wl9Nfx7vVk8UbfGWklGOMVV5");
 locationApi.send();
 
-setInterval(() => {
+
+function appFn(){
     var worldApi = new XMLHttpRequest();
             worldApi.onreadystatechange = function() {
                 if (this.readyState == 4 && this.status == 200) {
 
                 let worldApiData = JSON.parse(worldApi.responseText)
-                console.log('worldApi', worldApiData)
                 
                 let time = document.getElementById('time');
                 time.textContent = worldApiData.datetime.slice(11,16).toString()
@@ -68,15 +70,21 @@ setInterval(() => {
 
                 let expandedContainer = document.querySelector('.expanded-container');
                 let icon = document.querySelector('.icon');
-                console.log('hour = ', hourOfDay)
+
                 if (hourOfDay >= 5 && hourOfDay < 18){
                     icon.src = 'assets/desktop/icon-sun.svg';
-                    document.body.style.backgroundImage = 'url(/assets/mobile/bg-image-daytime.jpg)';
+                    if(document.body.classList.contains('nighttime-background-image')){
+                        document.body.classList.remove('nighttime-background-image')
+                    }
+                    document.body.classList.add('daytime-background-image')
                     expandedContainer.style.backgroundColor = '#D2D5D8';
                     expandedContainer.style.color = '#303030';
                 } else {
                     icon.src = 'assets/desktop/icon-moon.svg';
-                    document.body.style.backgroundImage = 'url(/assets/mobile/bg-image-nighttime.jpg)';
+                    if(document.body.classList.contains('daytime-background-image')){
+                        document.body.classList.remove('daytime-background-image')
+                    }
+                    document.body.classList.add('nighttime-background-image')
                     expandedContainer.style.backgroundColor = '#000000BF';
                     expandedContainer.style.color = 'white';
                 }
@@ -95,10 +103,15 @@ setInterval(() => {
     };
     worldApi.open("GET", `https://worldtimeapi.org/api/ip`, true);
     worldApi.send();
-}, 200);
+};
+
+setInterval(() => {
+    appFn();
+}, 1000);
 
 
 //EXPAND BUTTON
+let overlay = document.getElementById('.overlay')
 let isExpanded = false;
 let button = document.getElementById('pop-up-btn');
 button.addEventListener('click', () => {
@@ -111,6 +124,7 @@ button.addEventListener('click', () => {
     let btnText = document.getElementById('btn-txt');
     let btnArrow = document.getElementById('btn-arrow');
     let bottomContainer = document.querySelector('.bottom-container');
+    let overlayDiv = document.getElementById('overlay');
     if (isExpanded) {
         isExpanded = false;
         btnText.textContent = 'MORE';
@@ -126,9 +140,6 @@ button.addEventListener('click', () => {
 
 })
 
-// /// CORRECTED GREETING ICON BASED ON TIME
-// /// 
-
 
 //TABLET MODE NOTES 
 
@@ -142,4 +153,5 @@ button.addEventListener('click', () => {
 
     //CHECK FONT SIZES IN CSS
 
-console.log('date     ', new Date())
+
+    
