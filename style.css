@@ -122,3 +122,11 @@ body {
 .expanded-info h5 {
     font-size: 20px;
 }
+
+/* //Animations */
+
+/* @keyframes slide-in {
+    0%{
+        transform: translateX()
+    }
+} */
