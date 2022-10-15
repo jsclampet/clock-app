@@ -18,13 +18,13 @@ body {
     color: #fff;
 }
 .nighttime-background-image {
-    background-image: url(/assets/mobile/bg-image-nighttime.jpg);
+    background-image: url(assets/mobile/bg-image-nighttime.jpg);
     background-position: center bottom;
     background-repeat: no-repeat;
     background-size: cover;
 }
 .daytime-background-image {
-    background-image: url(/assets/mobile/bg-image-daytime.jpg);
+    background-image: url(assets/mobile/bg-image-daytime.jpg);
     background-position: center bottom;
     background-repeat: no-repeat;
     background-size: cover;
@@ -33,6 +33,7 @@ body {
     background-color: rgba(0,0,0,0.4);
     height: 100vh;
     width: 100vw;
+    z-index: 20;
 }
 
 /* MAIN */
@@ -118,10 +119,16 @@ body {
 }
 .expanded-container {
     padding: 48px 26px;
-    background-color: #D2D5D8;
-    color: #303030;
     position: absolute;
     width: 100%;
+}
+.expanded-light-style {
+    background-color: #D2D5D8;
+    color: #303030;
+}
+.expanded-dark-style {
+    background-color: #000000BF;
+    color: #fff;
 }
 .expanded-info {
     display: flex;
@@ -144,3 +151,5 @@ body {
         background-image: url("assets/tablet/bg-image-daytime.jpg");
     }
 }
+
+/* Bottom container should also have css class to deal with styling (top) INSTEAD of controlling styling in JS */

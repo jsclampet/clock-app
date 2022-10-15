@@ -77,16 +77,20 @@ function appFn(){
                         document.body.classList.remove('nighttime-background-image')
                     }
                     document.body.classList.add('daytime-background-image')
-                    expandedContainer.style.backgroundColor = '#D2D5D8';
-                    expandedContainer.style.color = '#303030';
+                    if(expandedContainer.classList.contains('expanded-dark-style')){
+                        expandedContainer.classList.remove('expanded-dark-style');
+                    }
+                    expandedContainer.classList.add('expanded-light-style');
                 } else {
                     icon.src = 'assets/desktop/icon-moon.svg';
                     if(document.body.classList.contains('daytime-background-image')){
                         document.body.classList.remove('daytime-background-image')
                     }
                     document.body.classList.add('nighttime-background-image')
-                    expandedContainer.style.backgroundColor = '#000000BF';
-                    expandedContainer.style.color = 'white';
+                    if(expandedContainer.classList.contains('expanded-light-style')){
+                        expandedContainer.classList.remove('expanded-light-style');
+                    }
+                    expandedContainer.classList.add('expanded-dark-style');
                 }
                 
 
