@@ -18,13 +18,13 @@ body {
     color: #fff;
 }
 .nighttime-background-image {
-    background-image: url(assets/mobile/bg-image-nighttime.jpg);
+    background-image: url("assets/mobile/bg-image-nighttime.jpg");
     background-position: center bottom;
     background-repeat: no-repeat;
     background-size: cover;
 }
 .daytime-background-image {
-    background-image: url(assets/mobile/bg-image-daytime.jpg);
+    background-image: url("assets/mobile/bg-image-daytime.jpg");
     background-position: center bottom;
     background-repeat: no-repeat;
     background-size: cover;
