@@ -11,11 +11,11 @@ a {
     text-decoration: none;
     color: white;
 }
-.hidden {
-    display: none;
-}
 body {
     color: #fff;
+}
+html, body {
+    width: 100vw;
 }
 .nighttime-background-image {
     background-image: url("assets/mobile/bg-image-nighttime.jpg");
@@ -34,15 +34,23 @@ body {
     height: 100vh;
     width: 100vw;
     z-index: 20;
+    display: flex;
+    align-items:flex-end;
+}
+.hidden {
+    display: none;
 }
 
 /* MAIN */
 .main-container {
-    padding: 32px 26px 0;
+    padding: 32px 0 0;
 }
-#quote {
-    position: relative;
+.top-container{
+    position: absolute;
+    top: 32px;
+    left: 26px;
 }
+
 #quote p {
     font-weight: 200;
     font-size: 12px;
@@ -55,14 +63,15 @@ body {
 #quote #author {
     font-weight: 700;
 }
-#quote #refresh-btn {
+#refresh-btn {
     position: absolute;
     top: 0;
-    right: 0;
+    right: -35px;
 }
 .bottom-container {
     position: absolute;
     bottom: 40px;
+    margin-left: 26px;
 }
 .greeting {
     display: flex;
@@ -141,15 +150,131 @@ body {
 .expanded-info h5 {
     font-size: 20px;
 }
+.bottom-pushed-up {
+    position: static;
+}
+.bottom-pushed-down {
+    position: absolute;
+    top: 0;
+}
 
 /* TABLET */
-@media only screen and (min-width: 768px) {
+@media only screen and (min-width: 700px) {
+    .main-container {
+        padding: 80px 64px;
+    }
+    .top-container{
+        top: 80px;
+        left: 64px;
+    }
+    #quote p {
+        font-size: 18px;
+        width: 570px;
+    }
     .nighttime-background-image {
         background-image: url("assets/tablet/bg-image-nighttime.jpg");
     }
     .daytime-background-image {
         background-image: url("assets/tablet/bg-image-daytime.jpg");
     }
+    .greeting p {
+        font-size: 18px;
+        line-height: 40px;
+    }
+    #time {
+        font-size: 175px;
+        line-height: 175px;
+    }
+    #location {
+        font-size: 18px;
+        line-height: 28px;
+    }
+    #pop-up-btn {
+        width: 146px;
+        border-radius: 30px;
+    }
+    #btn-arrow {
+        margin: 6px;
+        padding: 16px 13px;
+        border-radius: 20px;
+    }
+    .expanded-container {
+        padding: 119px 64px;
+        display: none;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+    .expanded-info {
+        display: flex;
+        flex-direction: column;
+        width: 40%;
+    }
+    .expanded-info p {
+        font-size: 13px;
+        line-height: 28px;
+    }
+    .expanded-info h5 {
+        font-size: 40px;
+        line-height: 48px;
+    }
 }
 
-/* Bottom container should also have css class to deal with styling (top) INSTEAD of controlling styling in JS */
+/* DESKTOP */
+@media only screen and (min-width: 1100px){
+    .quote {
+        font-weight: 400;
+        font-size: 18px;
+        line-height: 28px;
+    }
+    #author {
+        font-size: 18px;
+        font-weight: 700;
+    }
+    .greeting p {
+        font-size: 20px;
+        line-height: 28px;
+        font-weight: 400;
+    }
+    .top-container {
+        margin-left: 165px;
+        left: 0;
+    }
+    .bottom-container {
+        width: 100vw;
+        display: flex;
+        flex-wrap: wrap;
+        margin-left: 165px;
+        left: 0;
+        margin-bottom: 70px;
+        overflow-x: hidden;
+    }
+    .bottom-container .greeting {
+        width: 100%;
+    }
+    .bottom-container #time {
+        font-weight: 700;
+        line-height: 200px;
+        font-size: 200px;
+        width: 50%;
+    }
+    .bottom-container #time-zone-abbrev {
+        font-weight: 300;
+        line-height: 28px;
+        font-size: 40px;
+        width: 50%;
+        align-self: flex-end;
+        margin-bottom: 45px;
+    }
+    .bottom-container #location {
+        font-weight: 700;
+        line-height: 28px;
+        font-size: 24px;
+        width: 50%;
+        margin-bottom: 0;
+    }
+    .bottom-container #pop-up-btn {
+        margin-top: -40px;
+        margin-left: auto;
+        transform: translateX(-200%);
+    }
+}

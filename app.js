@@ -68,6 +68,10 @@ function appFn(){
                     greeting.textContent = "GOOD EVENING"
                 }
 
+                if(window.innerWidth >= 700){
+                    document.querySelector('.greeting p').textContent += ", IT'S CURRENTLY"
+                }
+
                 let expandedContainer = document.querySelector('.expanded-container');
                 let icon = document.querySelector('.icon');
 
@@ -102,7 +106,6 @@ function appFn(){
                 dayOfWeek.textContent = worldApiData.day_of_week
                 let weekNumber = document.querySelector('.week-number')
                 weekNumber.textContent = worldApiData.week_number
-
         }
     };
     worldApi.open("GET", `https://worldtimeapi.org/api/ip`, true);
@@ -111,7 +114,7 @@ function appFn(){
 
 setInterval(() => {
     appFn();
-}, 1000);
+}, 250);
 
 
 //EXPAND BUTTON
@@ -121,10 +124,7 @@ let button = document.getElementById('pop-up-btn');
 button.addEventListener('click', () => {
     //toggle visibility for expanded and bottom containers
     let topContainer = document.querySelector('.top-container')
-    topContainer.classList.toggle('hidden');
-    let expandedContainer = document.querySelector('.expanded-container')
-    expandedContainer.classList.toggle('hidden');
-
+    topContainer.classList.toggle('hidden');                                        
     let btnText = document.getElementById('btn-txt');
     let btnArrow = document.getElementById('btn-arrow');
     let bottomContainer = document.querySelector('.bottom-container');
@@ -132,18 +132,33 @@ button.addEventListener('click', () => {
     if (isExpanded) {
         isExpanded = false;
         btnText.textContent = 'MORE';
-        btnArrow.style.transform = 'rotate(0deg)'
-        bottomContainer.style.top = '355px';
+        btnArrow.style.transform = 'rotate(0deg)';
+        if (bottomContainer.classList.contains('bottom-pushed-down')){
+            bottomContainer.classList.remove('bottom-pushed-down');
+        }
+        bottomContainer.classList.add('bottom-pushed-up')
     } else {
         isExpanded = true;
         btnText.textContent = 'LESS';
         btnArrow.style.transform = 'rotate(180deg)';
         bottomContainer.style.top = '99px';
-        expandedContainer.style.bottom = '0';
+        if (bottomContainer.classList.contains('bottom-pushed-up')){
+            bottomContainer.classList.remove('bottom-pushed-up');
+        }
+        bottomContainer.classList.add('bottom-pushed-down')
     }   
 
+    let expandedContainer = document.querySelector('.expanded-container')
+    if (window.innerWidth <= 700) {
+        expandedContainer.classList.toggle('hidden');
+    } else {
+        expandedContainer.classList.remove('hidden');
+        //btnText was "LESS", now "MORE" after click, and expanded collapsed
+        if (btnText.textContent === "MORE") {
+            expandedContainer.style.display = "none"
+        } else {expandedContainer.style.display = "flex"}
+    }   
 })
-
 
 //TABLET MODE NOTES 
 
